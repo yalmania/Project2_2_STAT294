@@ -67,12 +67,9 @@ server <- function(input, output){
   # code for Tab 1
   output$Content <- DT::renderDataTable({
     req(input$file1)
-    tryCatch(
-      {
-        d <- read.spss(input$file1$datapath, to.data.frame = TRUE)
-        d2 <- na.omit(d)
-        d3 <- transform(d2,'TeachingStyle'= ifelse(d2$wesson=='Ruger_Smith', 'standard','traditional'))
-      })
+    d <- read.spss(input$file1$datapath, to.data.frame = TRUE)
+    d2 <- na.omit(d)
+    d3 <- transform(d2,'TeachingStyle'= ifelse(d2$wesson=='Ruger_Smith', 'standard','traditional'))
     
     df <- subset(d3, select = -c(Student, wesson)) 
   })
@@ -83,12 +80,10 @@ server <- function(input, output){
   # code for Tab 2
   output$PLOT1 <- renderPlot({
     req(input$file1)
-    tryCatch(
-      {
-        d <- read.spss(input$file1$datapath, to.data.frame = TRUE)
-        d2 <- na.omit(d)
-        d3 <- transform(d2,'TeachingStyle'= ifelse(d2$wesson=='Ruger_Smith', 'standard','traditional'))
-      })
+    d <- read.spss(input$file1$datapath, to.data.frame = TRUE)
+    d2 <- na.omit(d)
+    d3 <- transform(d2,'TeachingStyle'= ifelse(d2$wesson=='Ruger_Smith', 'standard','traditional'))
+   
     
     x <- switch((input$var1),
                 'Teacher'=c('Ruger','Smith','Wesson'),
@@ -157,12 +152,10 @@ server <- function(input, output){
   # code for Tab 3
   output$PLOT2 <- renderPlot({
     req(input$file1)
-    tryCatch(
-      {
-        d <- read.spss(input$file1$datapath, to.data.frame = TRUE)
-        d2 <- na.omit(d)
-        d3 <- transform(d2,'TeachingStyle'= ifelse(d2$wesson=='Ruger_Smith', 'standard','traditional'))
-      })
+    d <- read.spss(input$file1$datapath, to.data.frame = TRUE)
+    d2 <- na.omit(d)
+    d3 <- transform(d2,'TeachingStyle'= ifelse(d2$wesson=='Ruger_Smith', 'standard','traditional'))
+     
     
     y <- switch((input$var2),
                 'Teacher'=c('Ruger','Smith','Wesson'),
